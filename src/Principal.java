@@ -88,7 +88,7 @@ public class Principal extends javax.swing.JFrame {
         listaConq = new javax.swing.JList<>();
         aniadirConq = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        listaPlanConq1 = new javax.swing.JList<>();
+        listaPlanConq = new javax.swing.JList<>();
         jPanel5 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         tf_nombreAbd = new javax.swing.JTextField();
@@ -471,22 +471,30 @@ public class Principal extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel18.setText("Raza");
 
-        cb_razaConq.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel19.setText("Edad");
 
         cajaConq.setText("Es Amenaza");
 
         GuardarConq.setText("Guardar");
+        GuardarConq.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                GuardarConqMouseClicked(evt);
+            }
+        });
 
         listaConq.setModel(new DefaulListModel());
         jScrollPane3.setViewportView(listaConq);
 
         aniadirConq.setText("Añadir a Su Lista");
+        aniadirConq.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                aniadirConqMouseClicked(evt);
+            }
+        });
 
-        listaPlanConq1.setModel(new DefaulListModel());
-        jScrollPane4.setViewportView(listaPlanConq1);
+        listaPlanConq.setModel(new DefaulListModel());
+        jScrollPane4.setViewportView(listaPlanConq);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -571,8 +579,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel21.setText("Raza");
 
-        cb_razaAbd.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel22.setText("Edad");
 
@@ -580,6 +586,11 @@ public class Principal extends javax.swing.JFrame {
 
         guardarAbd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         guardarAbd.setText("Guardar");
+        guardarAbd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                guardarAbdMouseClicked(evt);
+            }
+        });
 
         jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel28.setText("Animales Abducidos");
@@ -865,6 +876,11 @@ public class Principal extends javax.swing.JFrame {
         DefaultComboBoxModel combo=(DefaultComboBoxModel)cb_razaCaz.getModel();
          comb.addElement(raza);
          cb_razaCaz.setModel(combo);
+         
+         
+         DefaultComboBoxModel combos=(DefaultComboBoxModel)cb_razaAbd.getModel();
+        combos.addElement(raza);
+         cb_razaAbd.setModel(combos);
         
          if( validarnombreRaza(tf_nombreRaza.getText())){
            JOptionPane.showMessageDialog(this, "Dos Razas no pueden tener la misma raza ");
@@ -915,6 +931,9 @@ public class Principal extends javax.swing.JFrame {
            list3.addElement(explorador);
            listaMiembros.setModel(list3);
         }
+        else{
+            JOptionPane.showMessageDialog(this, "Seleccione un planeta");
+        }
 
 
 
@@ -947,6 +966,59 @@ public class Principal extends javax.swing.JFrame {
            listaMiembros.setModel(list3);
     }//GEN-LAST:event_guardarCazMouseClicked
 
+    private void guardarAbdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarAbdMouseClicked
+        // TODO add your handling code here:
+        DefaultListModel list3=(DefaultListModel) listaMiembros.getModel();
+        String raza=((String) cb_razaAbd.getSelectedItem());
+        Abduzcan abduzcan=new Abduzcan(raza,tf_nombreAbd.getText(),(Integer)sp_edadAbd.getValue(),cajaAbd.isSelected(),(Integer)sp_edadAbd2.getValue());
+        
+        list3.addElement(abduzcan);
+        listaMiembros.setModel(list3);
+    }//GEN-LAST:event_guardarAbdMouseClicked
+
+    private void GuardarConqMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarConqMouseClicked
+        // TODO add your handling code here:
+        DefaultListModel list=(DefaultListModel) listaPlanConq.getModel();
+        DefaultListModel list2=(DefaultListModel)listaConq.getModel();
+        DefaultListModel list3=(DefaultListModel) listaMiembros.getModel();
+        
+        Planetas p=new Planetas(tf_nombre.getText(),(Integer)tf_temperatura.getValue(),(Integer)tf_tamanio.getValue(),cb_agua.isSelected());
+        list.addElement(p);
+        listaPlanConq.setModel(list);
+        if(listaPlanConq.getSelectedIndex()>=0){
+            Object ob=list.getElementAt(listaPlanConq.getSelectedIndex());
+           list2.addElement(ob);
+           listaConq.setModel(list2);
+           
+      String raza=(String)cb_razaConq.getSelectedItem();
+        Conquistadores conquistador=new Conquistadores(raza,tf_nombreExplorador.getText(),(Integer)sp_edadExp.getValue(),cajaExp.isSelected());
+        conquistador.setPlanetasConquistados(listaConq);
+   
+           list3.addElement(conquistador);
+           listaMiembros.setModel(list3);
+        
+           
+        } 
+        else{
+            JOptionPane.showMessageDialog(this, "Seleccione un planeta");
+        }
+        
+        
+    }//GEN-LAST:event_GuardarConqMouseClicked
+
+    private void aniadirConqMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aniadirConqMouseClicked
+        // TODO add your handling code here:
+        DefaultListModel list=(DefaultListModel) listaPlanConq.getModel();
+        DefaultListModel list2=(DefaultListModel)listaConq.getModel();
+        Planetas p=new Planetas(tf_nombre.getText(),(Integer)tf_temperatura.getValue(),(Integer)tf_tamanio.getValue(),cb_agua.isSelected());
+        list.addElement(p);
+        listaPlanConq.setModel(list);
+        if(listaPlanConq.getSelectedIndex()>=0){
+            Object ob=list.getElementAt(listaPlanConq.getSelectedIndex());
+           list2.addElement(ob);
+           listaConq.setModel(list2);
+    }//GEN-LAST:event_aniadirConqMouseClicked
+    }
     
     
     
@@ -1064,7 +1136,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JList<String> listaCaz;
     private javax.swing.JList<String> listaConq;
     private javax.swing.JList<String> listaMiembros;
-    private javax.swing.JList<String> listaPlanConq1;
+    private javax.swing.JList<String> listaPlanConq;
     private javax.swing.JButton registrarPlaneta;
     private javax.swing.JButton registrarRaza;
     private javax.swing.JSpinner sp_edadAbd;

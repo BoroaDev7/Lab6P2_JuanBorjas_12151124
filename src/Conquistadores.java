@@ -1,10 +1,11 @@
 
-import java.util.ArrayList;
+
+import javax.swing.JList;
 
 
 public class Conquistadores extends Alienigenas {
     
-    ArrayList<Planetas> planetasConquistados=new ArrayList();
+    private JList planetasConquistados;
 
     public Conquistadores() {
         super();
@@ -14,15 +15,20 @@ public class Conquistadores extends Alienigenas {
         super(planetaPrimordial,nombreRaza,nombre,edad,amenaza);
        
     }
+    public Conquistadores(String nombreRaza,String nombre, int edad, boolean amenaza) {
+        super(nombreRaza,nombre,edad,amenaza);
+       
+    }
 
-    public ArrayList<Planetas> getPlanetasConquistados() {
+    public JList getPlanetasConquistados() {
         return planetasConquistados;
     }
 
-    public void setPlanetasConquistados(ArrayList<Planetas> planetasConquistados) {
+    public void setPlanetasConquistados(JList planetasConquistados) {
         this.planetasConquistados = planetasConquistados;
     }
 
+  
     @Override
     public String toString() {
         return super.toString();
