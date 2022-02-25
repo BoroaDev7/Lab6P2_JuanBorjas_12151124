@@ -941,7 +941,8 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
            DefaultListModel list3=(DefaultListModel) listaMiembros.getModel();
         String raza=((String)cb_razaCaz.getSelectedItem());
-        Cazadores cazador=new Cazadores(raza,tf_nombreCaz.getText(),(Integer)sp_edadCaz.getValue(),CajaCaz.isSelected());
+        Cazadores cazador=new Cazadores(raza,tf_nombreCaz.getText(),(Integer)sp_edadCaz.getValue(),CajaCaz.isSelected(),(Integer)cb_humanos.getValue());
+        
         list3.addElement(cazador);
            listaMiembros.setModel(list3);
     }//GEN-LAST:event_guardarCazMouseClicked
