@@ -164,6 +164,11 @@ public class Principal extends javax.swing.JFrame {
                 registrarRazaMouseClicked(evt);
             }
         });
+        registrarRaza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarRazaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -831,7 +836,8 @@ public class Principal extends javax.swing.JFrame {
         DefaultComboBoxModel comb=(DefaultComboBoxModel) cb_planetas.getModel();
         
         comb.addElement(p);
-        cb_planetas.setModel(comb); // TODO add your handling code here:
+        cb_planetas.setModel(comb); 
+        tf_nombre.setText("");
        
     }//GEN-LAST:event_registrarPlanetaMouseClicked
 
@@ -843,7 +849,20 @@ public class Principal extends javax.swing.JFrame {
         DefaultComboBoxModel comb=(DefaultComboBoxModel) cb_razaExp.getModel();
         comb.addElement(raza);
         cb_razaExp.setModel(comb);
+        
+        
+        DefaultComboBoxModel combo=(DefaultComboBoxModel) cb_planetaFav.getModel();
+        
+        Planetas p=new Planetas(tf_nombre.getText(),(Integer)tf_temperatura.getValue(),(Integer)tf_tamanio.getValue(),cb_agua.isSelected());
+        combo.addElement(p);
+        cb_planetaFav.setModel(combo);
+        tf_nombreRaza.setText("");
+        
     }//GEN-LAST:event_registrarRazaMouseClicked
+
+    private void registrarRazaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarRazaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_registrarRazaActionPerformed
 
     
     
