@@ -1,30 +1,25 @@
 
-import javax.swing.JComboBox;
-
-
 public class Raza {
-    private JComboBox  planetaPrimordial;
+    private Planetas planetaPrimordial;
     private String nombreRaza;
 
     public Raza() {
     }
 
-    public Raza( String nombreRaza) {
-      
+    public Raza(Planetas planetaPrimordial, String nombreRaza) {
+        this.planetaPrimordial = planetaPrimordial;
         this.nombreRaza = nombreRaza;
     }
 
   
 
-    public JComboBox getPlanetaPrimordial() {
+    public Planetas getPlanetaPrimordial() {
         return planetaPrimordial;
     }
 
-    public void setPlanetaPrimordial(JComboBox planetaPrimordial) {
+    public void setPlanetaPrimordial(Planetas planetaPrimordial) {
         this.planetaPrimordial = planetaPrimordial;
     }
-
-    
 
     public String getNombreRaza() {
         return nombreRaza;

@@ -641,6 +641,7 @@ public class Principal extends javax.swing.JFrame {
         botonpasar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         botonpasar.setText(">");
 
+        arbol.setModel(new DefaultTreeModel ());
         jScrollPane6.setViewportView(arbol);
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -836,7 +837,12 @@ public class Principal extends javax.swing.JFrame {
 
     private void registrarRazaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registrarRazaMouseClicked
         // TODO add your handling code here:
-        Raza raza=new Raza()
+        Planetas pa=((Planetas)cb_planetas.getSelectedItem());
+        Raza raza=new Raza(pa,tf_nombreRaza.getText());
+       
+        DefaultComboBoxModel comb=(DefaultComboBoxModel) cb_razaExp.getModel();
+        comb.addElement(raza);
+        cb_razaExp.setModel(comb);
     }//GEN-LAST:event_registrarRazaMouseClicked
 
     
