@@ -1,27 +1,35 @@
 
-import java.util.ArrayList;
+
+
+
+import javax.swing.JList;
 
 
 public class Exploradores extends Alienigenas {
-    private ArrayList<Planetas> planetasExplorados=new ArrayList();
+    private JList planetasExplorados;
 
     public Exploradores() {
     }
 
    
-    public Exploradores(Planetas planetaPrimordial, String nombreRaza,String nombre, String raza, int edad, boolean amenaza) {
-        super(planetaPrimordial,nombreRaza,nombre,raza,edad,amenaza);
+    public Exploradores(Planetas planetaPrimordial, String nombreRaza,String nombre, int edad, boolean amenaza) {
+        super(planetaPrimordial,nombreRaza,nombre,edad,amenaza);
        
     }
-    
 
-    public ArrayList<Planetas> getPlanetasExplorados() {
+    public JList getPlanetasExplorados() {
         return planetasExplorados;
     }
 
-    public void setPlanetasExplorados(ArrayList<Planetas> planetasExplorados) {
+    public void setPlanetasExplorados(JList planetasExplorados) {
         this.planetasExplorados = planetasExplorados;
     }
+
+   
+    
+    
+
+   
 
     @Override
     public String toString() {

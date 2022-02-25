@@ -10,8 +10,8 @@ public class Cazadores extends Alienigenas {
     }
 
     
-     public Cazadores(Planetas planetaPrimordial, String nombreRaza,String nombre, String raza, int edad, boolean amenaza) {
-        super(planetaPrimordial,nombreRaza,nombre,raza,edad,amenaza);
+     public Cazadores(Planetas planetaPrimordial, String nombreRaza,String nombre,  int edad, boolean amenaza) {
+        super(planetaPrimordial,nombreRaza,nombre,edad,amenaza);
        
     }
 

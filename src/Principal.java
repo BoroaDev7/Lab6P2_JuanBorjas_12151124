@@ -1,5 +1,8 @@
 
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -55,7 +58,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         sp_edadExp = new javax.swing.JSpinner();
         cajaExp = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
+        guardarExp = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         listaCaz = new javax.swing.JList<>();
         aniadirLista = new javax.swing.JButton();
@@ -255,25 +258,31 @@ public class Principal extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel10.setText("Raza");
 
-        cb_planetaFav.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel11.setText("Planeta Favorito");
-
-        cb_razaExp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel12.setText("Edad");
 
         cajaExp.setText("Es Amenaza");
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setText("Guardar");
+        guardarExp.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        guardarExp.setText("Guardar");
+        guardarExp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                guardarExpMouseClicked(evt);
+            }
+        });
 
         listaCaz.setModel(new DefaultListModel());
         jScrollPane1.setViewportView(listaCaz);
 
         aniadirLista.setText("Añadir a Su Lista");
+        aniadirLista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                aniadirListaMouseClicked(evt);
+            }
+        });
 
         ListaPlan.setModel(new DefaultListModel());
         jScrollPane2.setViewportView(ListaPlan);
@@ -321,7 +330,7 @@ public class Principal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cb_planetaFav, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(guardarExp, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(125, 125, 125))))))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
@@ -347,20 +356,20 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(cb_planetaFav))
                         .addGap(36, 36, 36)
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(guardarExp, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sp_edadExp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cajaExp))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(aniadirLista)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(83, 83, 83))))
+                        .addGap(83, 83, 83))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(139, 139, 139)
+                        .addComponent(aniadirLista)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                     .addContainerGap(238, Short.MAX_VALUE)
@@ -843,13 +852,19 @@ public class Principal extends javax.swing.JFrame {
 
     private void registrarRazaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registrarRazaMouseClicked
         // TODO add your handling code here:
+        
         Planetas pa=((Planetas)cb_planetas.getSelectedItem());
         Raza raza=new Raza(pa,tf_nombreRaza.getText());
-       
         DefaultComboBoxModel comb=(DefaultComboBoxModel) cb_razaExp.getModel();
         comb.addElement(raza);
         cb_razaExp.setModel(comb);
+        tf_nombreRaza.setText("");
+        razas.add(raza);
         
+         if( validarnombreRaza(tf_nombreRaza.getText())){
+           JOptionPane.showMessageDialog(this, "Dos Razas no pueden tener la misma raza ");
+           tf_nombreRaza.setText("");
+      }
         
         DefaultComboBoxModel combo=(DefaultComboBoxModel) cb_planetaFav.getModel();
         
@@ -859,11 +874,59 @@ public class Principal extends javax.swing.JFrame {
         tf_nombreRaza.setText("");
         
     }//GEN-LAST:event_registrarRazaMouseClicked
-
+   
+   
     private void registrarRazaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarRazaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_registrarRazaActionPerformed
 
+    
+    private boolean validarnombreRaza(String nombre){
+        for (Raza raza : razas) {
+            if(raza.getNombreRaza().equals(nombre))
+                return true;
+            
+        }
+        return false;
+    }
+    
+    private void guardarExpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarExpMouseClicked
+        // TODO add your handling code here:
+        DefaultListModel list=(DefaultListModel)ListaPlan.getModel();
+        DefaultListModel list2=(DefaultListModel)listaCaz.getModel();
+        DefaultListModel list3=(DefaultListModel) listaMiembros.getModel();
+        
+         Planetas p=new Planetas(tf_nombre.getText(),(Integer)tf_temperatura.getValue(),(Integer)tf_tamanio.getValue(),cb_agua.isSelected());
+        list.addElement(p);
+        ListaPlan.setModel(list);
+        if(ListaPlan.getSelectedIndex()>=0){
+            Object ob=list.getElementAt(ListaPlan.getSelectedIndex());
+           list2.addElement(ob);
+           listaCaz.setModel(list2);
+           
+        Planetas pa=((Planetas)cb_planetaFav.getSelectedItem());
+        String raza=((String)cb_razaExp.getSelectedItem());
+        Exploradores explorador=new Exploradores(pa,raza,tf_nombreExplorador.getText(),(Integer)sp_edadExp.getValue(),cajaExp.isSelected());
+        explorador.setPlanetasExplorados(listaCaz);
+   
+           list3.addElement(explorador);
+           listaMiembros.setModel(list3);
+        }
+
+
+
+        
+    }//GEN-LAST:event_guardarExpMouseClicked
+
+    private void aniadirListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aniadirListaMouseClicked
+        // TODO add your handling code here:
+        
+        DefaultListModel list=(DefaultListModel)ListaPlan.getModel();
+        DefaultListModel list2=(DefaultListModel)listaCaz.getModel();
+        
+    }//GEN-LAST:event_aniadirListaMouseClicked
+
+    
     
     
     
@@ -928,7 +991,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_razaExp;
     private javax.swing.JButton guardarAbd;
     private javax.swing.JButton guardarCaz;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton guardarExp;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
@@ -1000,4 +1063,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JSpinner tf_tamanio;
     private javax.swing.JSpinner tf_temperatura;
     // End of variables declaration//GEN-END:variables
+
+    static  ArrayList<Raza> razas=new ArrayList();
 }
+

@@ -10,8 +10,8 @@ public class Conquistadores extends Alienigenas {
         super();
     }
 
-    public Conquistadores(Planetas planetaPrimordial, String nombreRaza,String nombre, String raza, int edad, boolean amenaza) {
-        super(planetaPrimordial,nombreRaza,nombre,raza,edad,amenaza);
+    public Conquistadores(Planetas planetaPrimordial, String nombreRaza,String nombre, int edad, boolean amenaza) {
+        super(planetaPrimordial,nombreRaza,nombre,edad,amenaza);
        
     }
 
