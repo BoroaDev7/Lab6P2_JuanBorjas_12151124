@@ -253,6 +253,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Registrar Raza"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="registrarRazaMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

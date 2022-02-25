@@ -159,6 +159,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel7.setText("Nombre");
 
         registrarRaza.setText("Registrar Raza");
+        registrarRaza.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                registrarRazaMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -828,6 +833,11 @@ public class Principal extends javax.swing.JFrame {
         cb_planetas.setModel(comb); // TODO add your handling code here:
        
     }//GEN-LAST:event_registrarPlanetaMouseClicked
+
+    private void registrarRazaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registrarRazaMouseClicked
+        // TODO add your handling code here:
+        Raza raza=new Raza()
+    }//GEN-LAST:event_registrarRazaMouseClicked
 
     
     
