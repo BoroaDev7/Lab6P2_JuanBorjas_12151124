@@ -11,10 +11,11 @@ public class Planetas {
     public Planetas() {
     }
 
-    public Planetas(String nombrePlaneta, double tamanio, double temperatura) {
+    public Planetas(String nombrePlaneta, double tamanio, double temperatura,boolean agua) {
         this.nombrePlaneta = nombrePlaneta;
         this.tamanio = tamanio;
         this.temperatura = temperatura;
+        this.agua=agua;
     }
 
     public String getNombrePlaneta() {
