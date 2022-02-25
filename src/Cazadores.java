@@ -14,6 +14,10 @@ public class Cazadores extends Alienigenas {
         super(planetaPrimordial,nombreRaza,nombre,edad,amenaza);
        
     }
+     public Cazadores(String nombreRaza,String nombre,  int edad, boolean amenaza) {
+        super(nombreRaza,nombre,edad,amenaza);
+       
+    }
 
     public ArrayList getHumanosAtrapados() {
         return humanosAtrapados;

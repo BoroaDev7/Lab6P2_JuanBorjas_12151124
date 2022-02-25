@@ -10,6 +10,11 @@ public class Raza {
         this.planetaPrimordial = planetaPrimordial;
         this.nombreRaza = nombreRaza;
     }
+    public Raza(String nombreRaza) {
+
+        this.nombreRaza = nombreRaza;
+    }
+
 
   
 

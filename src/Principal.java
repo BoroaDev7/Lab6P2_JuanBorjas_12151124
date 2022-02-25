@@ -66,7 +66,7 @@ public class Principal extends javax.swing.JFrame {
         ListaPlan = new javax.swing.JList<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        tf_nombreCazador = new javax.swing.JTextField();
+        tf_nombreCaz = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         cb_razaCaz = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
@@ -157,8 +157,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Planeta Primordial");
 
-        cb_planetas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel7.setText("Nombre");
 
         registrarRaza.setText("Registrar Raza");
@@ -247,7 +245,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(cb_agua)
                 .addGap(18, 18, 18)
                 .addComponent(registrarPlaneta)
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Planetas y Razas", jPanel1);
@@ -385,8 +383,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel14.setText("Raza");
 
-        cb_razaCaz.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel15.setText("Edad");
 
@@ -396,6 +392,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel16.setText("Humanos Atrapados");
 
         guardarCaz.setText("Guardar");
+        guardarCaz.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                guardarCazMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -410,7 +411,7 @@ public class Principal extends javax.swing.JFrame {
                                 .addGap(24, 24, 24)
                                 .addComponent(jLabel13))
                             .addComponent(sp_edadCaz, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                            .addComponent(tf_nombreCazador))
+                            .addComponent(tf_nombreCaz))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -439,7 +440,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tf_nombreCazador, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_nombreCaz, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
@@ -858,15 +859,17 @@ public class Principal extends javax.swing.JFrame {
         DefaultComboBoxModel comb=(DefaultComboBoxModel) cb_razaExp.getModel();
         comb.addElement(raza);
         cb_razaExp.setModel(comb);
-        tf_nombreRaza.setText("");
+      
         razas.add(raza);
+        
+        DefaultComboBoxModel combo=(DefaultComboBoxModel)cb_razaCaz.getModel();
+         comb.addElement(raza);
+         cb_razaCaz.setModel(combo);
         
          if( validarnombreRaza(tf_nombreRaza.getText())){
            JOptionPane.showMessageDialog(this, "Dos Razas no pueden tener la misma raza ");
            tf_nombreRaza.setText("");
       }
-        
-        DefaultComboBoxModel combo=(DefaultComboBoxModel) cb_planetaFav.getModel();
         
         Planetas p=new Planetas(tf_nombre.getText(),(Integer)tf_temperatura.getValue(),(Integer)tf_tamanio.getValue(),cb_agua.isSelected());
         combo.addElement(p);
@@ -923,8 +926,25 @@ public class Principal extends javax.swing.JFrame {
         
         DefaultListModel list=(DefaultListModel)ListaPlan.getModel();
         DefaultListModel list2=(DefaultListModel)listaCaz.getModel();
+        Planetas p=new Planetas(tf_nombre.getText(),(Integer)tf_temperatura.getValue(),(Integer)tf_tamanio.getValue(),cb_agua.isSelected());
+        list.addElement(p);
+        ListaPlan.setModel(list);
+        if(ListaPlan.getSelectedIndex()>=0){
+            Object ob=list.getElementAt(ListaPlan.getSelectedIndex());
+           list2.addElement(ob);
+           listaCaz.setModel(list2);
         
+        }   
     }//GEN-LAST:event_aniadirListaMouseClicked
+
+    private void guardarCazMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarCazMouseClicked
+        // TODO add your handling code here:
+           DefaultListModel list3=(DefaultListModel) listaMiembros.getModel();
+        String raza=((String)cb_razaCaz.getSelectedItem());
+        Cazadores cazador=new Cazadores(raza,tf_nombreCaz.getText(),(Integer)sp_edadCaz.getValue(),CajaCaz.isSelected());
+        list3.addElement(cazador);
+           listaMiembros.setModel(list3);
+    }//GEN-LAST:event_guardarCazMouseClicked
 
     
     
@@ -1056,7 +1076,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_nombre;
     private javax.swing.JTextField tf_nombreAbd;
     private javax.swing.JTextField tf_nombreAbd1;
-    private javax.swing.JTextField tf_nombreCazador;
+    private javax.swing.JTextField tf_nombreCaz;
     private javax.swing.JTextField tf_nombreConq;
     private javax.swing.JTextField tf_nombreExplorador;
     private javax.swing.JTextField tf_nombreRaza;

@@ -15,6 +15,12 @@ public class Alienigenas extends Raza {
         this.edad = edad;
         this.amenaza = amenaza;
     }
+    public Alienigenas( String nombreRaza,String nombre,  int edad, boolean amenaza) {
+        super(nombreRaza);
+        this.nombre = nombre;
+        this.edad = edad;
+        this.amenaza = amenaza;
+    }
 
     public String getNombre() {
         return nombre;
