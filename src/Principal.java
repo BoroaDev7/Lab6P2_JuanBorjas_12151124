@@ -57,6 +57,7 @@ public class Principal extends javax.swing.JFrame {
              modelo.addElement(Conquista.contains(cb_planetasArbol.getSelectedItem()));
              listaMiembros.setModel(modelo);
    
+             JOptionPane.showMessageDialog(this, "ya no sabia que hacer asi que mil disculpas, me salio super malo como siempre, pero hay salud y eso importa tambien");
      
     }
 
