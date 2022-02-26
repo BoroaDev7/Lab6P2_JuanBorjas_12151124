@@ -3,6 +3,9 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -105,8 +108,6 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         listaMiembros = new javax.swing.JList<>();
         botonpasar = new javax.swing.JButton();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        arbol = new javax.swing.JTree();
         jLabel23 = new javax.swing.JLabel();
         tf_nombreAbd1 = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
@@ -126,6 +127,8 @@ public class Principal extends javax.swing.JFrame {
         sp_edadAbd3 = new javax.swing.JSpinner();
         CajaCaz1 = new javax.swing.JCheckBox();
         jButton3 = new javax.swing.JButton();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        arbol = new javax.swing.JTree();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -659,16 +662,22 @@ public class Principal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Abduzcan", jPanel5);
 
-        cb_planetasArbol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_planetasArbol.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_planetasArbolItemStateChanged(evt);
+            }
+        });
 
         listaMiembros.setModel(new DefaultListModel());
         jScrollPane5.setViewportView(listaMiembros);
 
         botonpasar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         botonpasar.setText(">");
-
-        arbol.setModel(new DefaultTreeModel ());
-        jScrollPane6.setViewportView(arbol);
+        botonpasar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonpasarMouseClicked(evt);
+            }
+        });
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel23.setText("Nombre");
@@ -704,6 +713,13 @@ public class Principal extends javax.swing.JFrame {
 
         jButton3.setText("Editar");
 
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Alienigenas");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("jupiter");
+        treeNode1.add(treeNode2);
+        arbol.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        arbol.setToolTipText("");
+        jScrollPane9.setViewportView(arbol);
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -715,11 +731,9 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(botonpasar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
+                        .addGap(198, 198, 198)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cb_planetaFav1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -733,23 +747,25 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
+                                .addGap(96, 96, 96)
                                 .addComponent(jLabel23))
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
+                                .addGap(81, 81, 81)
                                 .addComponent(tf_nombreAbd1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(43, 43, 43)
+                        .addGap(95, 95, 95)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addGap(41, 41, 41)
                                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(sp_edadAbd1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cb_razaAbd1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(46, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel27, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel29, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -767,18 +783,19 @@ public class Principal extends javax.swing.JFrame {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
+                        .addComponent(cb_planetasArbol, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(cb_planetasArbol, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(111, 111, 111)
                                 .addComponent(botonpasar))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel6Layout.createSequentialGroup()
@@ -805,20 +822,20 @@ public class Principal extends javax.swing.JFrame {
                                             .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel6Layout.createSequentialGroup()
                                         .addGap(85, 85, 85)
-                                        .addComponent(jButton2)))))))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel27)
-                    .addComponent(cb_humanos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel29)
-                    .addComponent(sp_edadAbd3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CajaCaz1)
-                    .addComponent(jButton3))
-                .addContainerGap(32, Short.MAX_VALUE))
+                                        .addComponent(jButton2)))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel27)
+                                    .addComponent(cb_humanos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(7, 7, 7)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel29)
+                            .addComponent(sp_edadAbd3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CajaCaz1)
+                            .addComponent(jButton3)))))
         );
 
         jTabbedPane1.addTab("Arbol", jPanel6);
@@ -887,10 +904,21 @@ public class Principal extends javax.swing.JFrame {
            tf_nombreRaza.setText("");
       }
         
+         DefaultComboBoxModel arbol=(DefaultComboBoxModel)cb_planetasArbol.getModel();
+         
+         
         Planetas p=new Planetas(tf_nombre.getText(),(Integer)tf_temperatura.getValue(),(Integer)tf_tamanio.getValue(),cb_agua.isSelected());
         combo.addElement(p);
         cb_planetaFav.setModel(combo);
-        tf_nombreRaza.setText("");
+        planetas.add(p);
+        
+        arbol.addElement(p);
+        tf_nombre.setText("");
+        
+       if( validarnombrePlaneta(tf_nombre.getText())){
+           JOptionPane.showMessageDialog(this, "Dos Razas no pueden tener la misma raza ");
+           tf_nombre.setText("");
+      } 
         
     }//GEN-LAST:event_registrarRazaMouseClicked
    
@@ -909,11 +937,20 @@ public class Principal extends javax.swing.JFrame {
         return false;
     }
     
+    private boolean validarnombrePlaneta(String nombre){
+        for (Planetas planet : planetas) {
+            if(planet.getNombrePlaneta().equals(nombre))
+                return true;
+            
+        }
+        return false;
+    }
+    
     private void guardarExpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarExpMouseClicked
         // TODO add your handling code here:
         DefaultListModel list=(DefaultListModel)ListaPlan.getModel();
         DefaultListModel list2=(DefaultListModel)listaCaz.getModel();
-        DefaultListModel list3=(DefaultListModel) listaMiembros.getModel();
+        
         
          Planetas p=new Planetas(tf_nombre.getText(),(Integer)tf_temperatura.getValue(),(Integer)tf_tamanio.getValue(),cb_agua.isSelected());
         list.addElement(p);
@@ -927,9 +964,7 @@ public class Principal extends javax.swing.JFrame {
         String raza=((String)cb_razaExp.getSelectedItem());
         Exploradores explorador=new Exploradores(pa,raza,tf_nombreExplorador.getText(),(Integer)sp_edadExp.getValue(),cajaExp.isSelected());
         explorador.setPlanetasExplorados(listaCaz);
-   
-           list3.addElement(explorador);
-           listaMiembros.setModel(list3);
+         explorer.add(explorador);
         }
         else{
             JOptionPane.showMessageDialog(this, "Seleccione un planeta");
@@ -958,29 +993,28 @@ public class Principal extends javax.swing.JFrame {
 
     private void guardarCazMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarCazMouseClicked
         // TODO add your handling code here:
-           DefaultListModel list3=(DefaultListModel) listaMiembros.getModel();
+          
         String raza=((String)cb_razaCaz.getSelectedItem());
         Cazadores cazador=new Cazadores(raza,tf_nombreCaz.getText(),(Integer)sp_edadCaz.getValue(),CajaCaz.isSelected(),(Integer)cb_humanos.getValue());
-        
-        list3.addElement(cazador);
-           listaMiembros.setModel(list3);
+        hunter.add(cazador);
+                
+    
     }//GEN-LAST:event_guardarCazMouseClicked
 
     private void guardarAbdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarAbdMouseClicked
         // TODO add your handling code here:
-        DefaultListModel list3=(DefaultListModel) listaMiembros.getModel();
+      
         String raza=((String) cb_razaAbd.getSelectedItem());
         Abduzcan abduzcan=new Abduzcan(raza,tf_nombreAbd.getText(),(Integer)sp_edadAbd.getValue(),cajaAbd.isSelected(),(Integer)sp_edadAbd2.getValue());
-        
-        list3.addElement(abduzcan);
-        listaMiembros.setModel(list3);
+        abduz.add(abduzcan);
+    
     }//GEN-LAST:event_guardarAbdMouseClicked
 
     private void GuardarConqMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarConqMouseClicked
         // TODO add your handling code here:
         DefaultListModel list=(DefaultListModel) listaPlanConq.getModel();
         DefaultListModel list2=(DefaultListModel)listaConq.getModel();
-        DefaultListModel list3=(DefaultListModel) listaMiembros.getModel();
+       
         
         Planetas p=new Planetas(tf_nombre.getText(),(Integer)tf_temperatura.getValue(),(Integer)tf_tamanio.getValue(),cb_agua.isSelected());
         list.addElement(p);
@@ -993,11 +1027,8 @@ public class Principal extends javax.swing.JFrame {
       String raza=(String)cb_razaConq.getSelectedItem();
         Conquistadores conquistador=new Conquistadores(raza,tf_nombreExplorador.getText(),(Integer)sp_edadExp.getValue(),cajaExp.isSelected());
         conquistador.setPlanetasConquistados(listaConq);
-   
-           list3.addElement(conquistador);
-           listaMiembros.setModel(list3);
-        
-           
+        Conquista.add(conquistador);
+
         } 
         else{
             JOptionPane.showMessageDialog(this, "Seleccione un planeta");
@@ -1019,6 +1050,38 @@ public class Principal extends javax.swing.JFrame {
            listaConq.setModel(list2);
     }//GEN-LAST:event_aniadirConqMouseClicked
     }
+    
+    private void cb_planetasArbolItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_planetasArbolItemStateChanged
+        // TODO add your handling code here:
+        if(cb_planetasArbol.getSelectedIndex()>=0){
+            
+            DefaultListModel modelo=(DefaultListModel) listaMiembros.getModel();
+            modelo.addElement(explorer.contains(cb_planetasArbol.getSelectedItem()));
+            modelo.addElement(hunter.contains(cb_planetasArbol.getSelectedItem()));
+            modelo.addElement(Conquista.contains(cb_planetasArbol.getSelectedItem()));
+            modelo.addElement(abduz.contains(cb_planetasArbol.getSelectedItem()));
+            listaMiembros.setModel(modelo);
+        }
+        else{
+            JOptionPane.showMessageDialog(this,"Seleccione un planeta");
+
+        }
+    }//GEN-LAST:event_cb_planetasArbolItemStateChanged
+
+    private void botonpasarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonpasarMouseClicked
+        // TODO add your handling code here:
+        DefaultListModel lista3=(DefaultListModel)listaMiembros.getModel();
+        DefaultTreeModel arbolin=(DefaultTreeModel)arbol.getModel();
+        
+        DefaultMutableTreeNode nodoPlaneta;
+        nodoPlaneta=new DefaultMutableTreeNode(cb_planetasArbol.getSelectedItem());
+        DefaultMutableTreeNode nodotipo;
+        int indice=listaMiembros.getSelectedIndex();
+        nodotipo=new DefaultMutableTreeNode(razas.get(indice).getNombreRaza());
+        DefaultMutableTreeNode nodoAlien;
+        nodoAlien= new DefaultMutableTreeNode(listaMiembros.getSelectedIndex()); 
+    }//GEN-LAST:event_botonpasarMouseClicked
+    
     
     
     
@@ -1129,9 +1192,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JList<String> listaCaz;
     private javax.swing.JList<String> listaConq;
@@ -1158,5 +1221,10 @@ public class Principal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     static  ArrayList<Raza> razas=new ArrayList();
+    static ArrayList<Planetas> planetas=new ArrayList();
+    static ArrayList<Exploradores> explorer=new ArrayList();
+    static ArrayList<Cazadores> hunter=new ArrayList();
+    static ArrayList<Abduzcan> abduz=new ArrayList();  
+    static ArrayList<Conquistadores> Conquista=new ArrayList();  
 }
 
