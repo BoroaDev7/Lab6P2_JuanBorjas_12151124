@@ -1,12 +1,12 @@
 
 public class Raza {
-    private Planetas planetaPrimordial;
+    private String planetaPrimordial;
     private String nombreRaza;
 
     public Raza() {
     }
 
-    public Raza(Planetas planetaPrimordial, String nombreRaza) {
+    public Raza(String planetaPrimordial, String nombreRaza) {
         this.planetaPrimordial = planetaPrimordial;
         this.nombreRaza = nombreRaza;
     }
@@ -18,13 +18,14 @@ public class Raza {
 
   
 
-    public Planetas getPlanetaPrimordial() {
+    public String getPlanetaPrimordial() {
         return planetaPrimordial;
     }
 
-    public void setPlanetaPrimordial(Planetas planetaPrimordial) {
+    public void setPlanetaPrimordial(String planetaPrimordial) {
         this.planetaPrimordial = planetaPrimordial;
     }
+
 
     public String getNombreRaza() {
         return nombreRaza;
@@ -36,7 +37,7 @@ public class Raza {
 
     @Override
     public String toString() {
-        return  planetaPrimordial + nombreRaza ;
+        return   nombreRaza ;
     }
     
     

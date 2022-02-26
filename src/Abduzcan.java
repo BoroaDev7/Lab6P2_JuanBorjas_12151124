@@ -7,7 +7,7 @@ public class Abduzcan extends Alienigenas {
         super();
     }
 
-    public Abduzcan(Planetas planetaPrimordial, String nombreRaza,String nombre,int edad, boolean amenaza,int animales) {
+    public Abduzcan(String planetaPrimordial, String nombreRaza,String nombre,int edad, boolean amenaza,int animales) {
         super(planetaPrimordial,nombreRaza,nombre,edad,amenaza);
        this.animales=animales;
     }

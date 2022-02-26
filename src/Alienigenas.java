@@ -9,7 +9,7 @@ public class Alienigenas extends Raza {
         super();
     }
 
-    public Alienigenas(Planetas planetaPrimordial, String nombreRaza,String nombre,  int edad, boolean amenaza) {
+    public Alienigenas(String planetaPrimordial, String nombreRaza,String nombre,  int edad, boolean amenaza) {
         super(planetaPrimordial,nombreRaza);
         this.nombre = nombre;
         this.edad = edad;

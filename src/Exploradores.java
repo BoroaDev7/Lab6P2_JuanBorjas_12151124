@@ -12,7 +12,7 @@ public class Exploradores extends Alienigenas {
     }
 
    
-    public Exploradores(Planetas planetaPrimordial, String nombreRaza,String nombre, int edad, boolean amenaza) {
+    public Exploradores(String planetaPrimordial, String nombreRaza,String nombre, int edad, boolean amenaza) {
         super(planetaPrimordial,nombreRaza,nombre,edad,amenaza);
        
     }
